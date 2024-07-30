@@ -1,5 +1,9 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+#controllers:
+#    resource:
+#        path: ../src/Controller/
+#        namespace: App\Controller
+#    type: attribute
+
+Track:
+    resource: '../src/Track/Infrastructure/Resources/routes'
+    type: directory

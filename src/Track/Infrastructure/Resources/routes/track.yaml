@@ -1,0 +1,6 @@
+get_track:
+  path: /track/{id}
+  controller: Track\Presentation\Http\Rest\Controller\GetTrackController
+  methods: ['GET']
+  requirements:
+    id: '\d+$'
