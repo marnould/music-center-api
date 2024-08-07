@@ -1,0 +1,22 @@
+services:
+  php_api:
+    build: .
+#    ports:
+#      - "8080:80"
+    volumes:
+      - .:/var/www/html
+
+  postgresql_database:
+    # Required for Apple Silicon machine based
+    platform: linux/x86_64
+    image: postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DATABASE: dev
+
+volumes:
+  postgresql_database:
