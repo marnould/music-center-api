@@ -32,4 +32,13 @@ class TrackRepository implements TrackRepositoryInterface
 
         return $track;
     }
+
+    public function findAll(): array
+    {
+        return $this->em->createQueryBuilder()
+            ->select('t')
+            ->from(Track::class, 't')
+            ->getQuery()
+            ->getArrayResult();
+    }
 }

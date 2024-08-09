@@ -8,4 +8,5 @@ use Track\Domain\Entity\Track;
 interface TrackRepositoryInterface
 {
     public function findOneById(UuidInterface $trackId): Track;
+    public function findAll(): array;
 }

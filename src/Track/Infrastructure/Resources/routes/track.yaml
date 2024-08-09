@@ -5,3 +5,8 @@ get_track:
   requirements:
     # TODO create a parameter in packages/parameters.yml
     trackId: '[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}'
+
+get_all_tracks:
+  path: /track
+  controller: Track\Presentation\Http\Rest\Controller\GetAllTracksController
+  methods: [ 'GET' ]
