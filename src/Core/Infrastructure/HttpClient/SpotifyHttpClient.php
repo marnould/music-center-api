@@ -10,6 +10,7 @@ use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Track\Domain\Entity\Track;
 
 class SpotifyHttpClient implements SpotifyHttpClientInterface
 {
@@ -56,11 +57,11 @@ class SpotifyHttpClient implements SpotifyHttpClientInterface
      * @throws TransportExceptionInterface
      * @throws ServerExceptionInterface
      */
-    public function getTrack(string $trackId): string
+    public function getTrack(Track $track): string
     {
         $response = $this->client->request(
             'GET',
-            self::SPOTIFY_BASE_URL . '/v1/tracks/' . $trackId,
+            self::SPOTIFY_BASE_URL . '/v1/tracks/' . $track->getSourceTrackId(),
             [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->getToken(),
