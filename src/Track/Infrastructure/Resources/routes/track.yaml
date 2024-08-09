@@ -1,6 +1,7 @@
 get_track:
-  path: /track/{id}
-  controller: Track\Presentation\Http\Rest\Controller\GetTrackController
+  path: /track/{trackId}
+  controller: Track\Presentation\Http\Rest\Controller\GetTrackByIdController
   methods: ['GET']
   requirements:
-    id: '\d+$'
+    # TODO create a parameter in packages/parameters.yml
+    trackId: '[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}'

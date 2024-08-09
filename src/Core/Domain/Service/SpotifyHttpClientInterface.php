@@ -2,9 +2,11 @@
 
 namespace Core\Domain\Service;
 
+use Track\Domain\Entity\Track;
+
 interface SpotifyHttpClientInterface
 {
-    public function getTrack(string $trackId): string;
+    public function getTrack(Track $track): string;
 
     public function getPlaylist(string $playlistId): string;
 }
