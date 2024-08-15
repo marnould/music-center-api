@@ -3,8 +3,8 @@
 namespace Track\Presentation\Http\Rest\Controller;
 
 use Core\Domain\Bus\Query\QueryBusInterface;
-use Track\Application\Query\GetAllTracksQuery;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Track\Application\Query\GetAllTracksQuery;
 
 class GetAllTracksController
 {
@@ -14,7 +14,6 @@ class GetAllTracksController
 
     public function __invoke(): JsonResponse
     {
-
         return new JsonResponse($this->queryBus->ask(new GetAllTracksQuery()));
     }
 }

@@ -16,6 +16,7 @@ class TrackRepository implements TrackRepositoryInterface
     {
         $this->em = $em;
     }
+
     public function findOneById(UuidInterface $trackId): Track
     {
         $track = $this->em->createQueryBuilder()

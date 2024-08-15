@@ -12,8 +12,7 @@ readonly class PlayTrackBySourceTrackIdHandler implements CommandHandlerInterfac
     public function __construct(
         private TrackRepositoryInterface $trackRepository,
         private SpotifyHttpClientInterface $spotifyHttpClient
-    )
-    {
+    ) {
     }
 
     public function __invoke(PlayTrackBySourceTrackIdCommand $command): string

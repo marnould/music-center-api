@@ -12,8 +12,7 @@ readonly class GetTrackQueryHandler implements QueryHandlerInterface
     public function __construct(
         private TrackRepositoryInterface $trackRepository,
         private SpotifyHttpClientInterface $spotifyHttpClient
-    )
-    {
+    ) {
     }
 
     public function __invoke(GetTrackQuery $query): string

@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Infrastructure\Doctrine\Type;
 
+use Core\Domain\ValueObject\Source;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\StringType;
-use InvalidArgumentException;
-use Core\Domain\ValueObject\Source;
 
 final class SourceType extends StringType
 {
@@ -22,7 +21,7 @@ final class SourceType extends StringType
 
         try {
             return Source::from($value);
-        } catch (InvalidArgumentException) {
+        } catch (\InvalidArgumentException) {
             throw new ConversionException();
         }
     }
@@ -35,7 +34,7 @@ final class SourceType extends StringType
 
         try {
             return Source::from($value)->value;
-        } catch (InvalidArgumentException) {
+        } catch (\InvalidArgumentException) {
             throw new ConversionException();
         }
     }

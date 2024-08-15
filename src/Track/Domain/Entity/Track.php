@@ -10,6 +10,7 @@ class Track
 {
     private readonly UuidInterface $id;
     private readonly CarbonImmutable $createdDate;
+
     public function __construct(
         private string $title,
         private Artist $artist,

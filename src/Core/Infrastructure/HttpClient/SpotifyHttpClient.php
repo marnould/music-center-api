@@ -18,9 +18,9 @@ use Track\Domain\Entity\Track;
 
 class SpotifyHttpClient implements SpotifyHttpClientInterface
 {
-    const SPOTIFY_BASE_URL = 'https://api.spotify.com/v1';
-    const REDIRECT_URI = 'http://127.0.0.1:8000';
-    const DEV_SPOTIFY_AUTH_CODE_DEV = 'AQCue7o1jrX6LiX1VheawgP-rNQg68nKdxAroSGop5jKx4X2q_50ykFvCgvCUIlN0pyhH6OvsK2cHAQFngtMK4BvVuVc0Df9_aq5OrrcNQzl5iQHutaGnNSsApWr6N0MD1h8MB4-6_7Cr8HfyQvBKcsba5bK0PPsYQavHOc5ojo-OgZYy8PeI488YWNXrq4q87IKgWAryfrKd2ye-vTAb_IeByLM3BYYDjqt5CezKJzSiIcmkvaumB5UWjW6OhzWSielrCJfIecKwLLSUST7BlhHkSiMuU9Wee8tcUNKRbgZ8qGg83YcHMZ8-vZKjcNOQFAeL318JSIVv_z8aKFXyyzQV6StfrC3OHK3UdhHmH9dBjUbAOOZKY8n3loKJZcI-LAoaMMg6oNYXwTIFwAT-hR_BLkzb717Rursm-s28mHSPP4rijqaMmdSnoQsUxPz6TUelaeni8HUxTRxX_ihEI5Fy252ltC-3pYdibSm8EvZGLUCuA4';
+    public const SPOTIFY_BASE_URL = 'https://api.spotify.com/v1';
+    public const REDIRECT_URI = 'http://127.0.0.1:8000';
+    public const DEV_SPOTIFY_AUTH_CODE_DEV = 'AQCue7o1jrX6LiX1VheawgP-rNQg68nKdxAroSGop5jKx4X2q_50ykFvCgvCUIlN0pyhH6OvsK2cHAQFngtMK4BvVuVc0Df9_aq5OrrcNQzl5iQHutaGnNSsApWr6N0MD1h8MB4-6_7Cr8HfyQvBKcsba5bK0PPsYQavHOc5ojo-OgZYy8PeI488YWNXrq4q87IKgWAryfrKd2ye-vTAb_IeByLM3BYYDjqt5CezKJzSiIcmkvaumB5UWjW6OhzWSielrCJfIecKwLLSUST7BlhHkSiMuU9Wee8tcUNKRbgZ8qGg83YcHMZ8-vZKjcNOQFAeL318JSIVv_z8aKFXyyzQV6StfrC3OHK3UdhHmH9dBjUbAOOZKY8n3loKJZcI-LAoaMMg6oNYXwTIFwAT-hR_BLkzb717Rursm-s28mHSPP4rijqaMmdSnoQsUxPz6TUelaeni8HUxTRxX_ihEI5Fy252ltC-3pYdibSm8EvZGLUCuA4';
 
     private readonly HttpClientInterface $client;
 
@@ -28,8 +28,7 @@ class SpotifyHttpClient implements SpotifyHttpClientInterface
         private readonly string $spotifyClientId,
         private readonly string $spotifyClientSecret,
         private readonly TokenRepositoryInterface $tokenRepository
-    )
-    {
+    ) {
         $this->client = HttpClient::create();
     }
 
@@ -64,10 +63,10 @@ class SpotifyHttpClient implements SpotifyHttpClientInterface
 
         switch ($existingAccessToken) {
             case null:
-               $accessToken = $this->getAccessToken();
-               $this->tokenRepository->save($accessToken);
+                $accessToken = $this->getAccessToken();
+                $this->tokenRepository->save($accessToken);
 
-               return $accessToken;
+                return $accessToken;
 
             case $existingAccessToken->getExpireDate()->isPast():
                 $refreshToken = $this->getRefreshToken($existingAccessToken);
@@ -99,7 +98,7 @@ class SpotifyHttpClient implements SpotifyHttpClientInterface
                 'body' => [
                     'grant_type' => 'authorization_code',
                     'code' => self::DEV_SPOTIFY_AUTH_CODE_DEV,
-                    'redirect_uri' => self::REDIRECT_URI
+                    'redirect_uri' => self::REDIRECT_URI,
                 ],
             ]
         );
@@ -130,7 +129,7 @@ class SpotifyHttpClient implements SpotifyHttpClientInterface
                 ],
                 'body' => [
                     'grant_type' => 'refresh_token',
-                    'refresh_token' => $existingToken->getRefreshToken()
+                    'refresh_token' => $existingToken->getRefreshToken(),
                 ],
             ]
         );
@@ -152,11 +151,11 @@ class SpotifyHttpClient implements SpotifyHttpClientInterface
     {
         $response = $this->client->request(
             'GET',
-            self::SPOTIFY_BASE_URL . '/tracks/' . $track->getSourceTrackId(),
+            self::SPOTIFY_BASE_URL.'/tracks/'.$track->getSourceTrackId(),
             [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $this->getValidToken()->getAccessToken(),
-                ]
+                    'Authorization' => 'Bearer '.$this->getValidToken()->getAccessToken(),
+                ],
             ]
         );
 
@@ -173,11 +172,11 @@ class SpotifyHttpClient implements SpotifyHttpClientInterface
     {
         $response = $this->client->request(
             'GET',
-            self::SPOTIFY_BASE_URL . '/playlists/' . $playlistId,
+            self::SPOTIFY_BASE_URL.'/playlists/'.$playlistId,
             [
                 'headers' => [
                     'Authorization' => sprintf('Bearer %s', $this->getToken()),
-                ]
+                ],
             ]
         );
 
@@ -188,15 +187,15 @@ class SpotifyHttpClient implements SpotifyHttpClientInterface
     {
         $response = $this->client->request(
             'PUT',
-            self::SPOTIFY_BASE_URL . '/me/player/play',
+            self::SPOTIFY_BASE_URL.'/me/player/play',
             [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $this->getValidToken()->getAccessToken(),
+                    'Authorization' => 'Bearer '.$this->getValidToken()->getAccessToken(),
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
-                    'uris' => ["spotify:track:".$track->getSourceTrackId()],
-                ]
+                    'uris' => ['spotify:track:'.$track->getSourceTrackId()],
+                ],
             ]
         );
 

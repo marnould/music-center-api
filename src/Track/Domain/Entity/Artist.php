@@ -15,7 +15,8 @@ class Artist
     private Collection $tracks;
     private Collection $albums;
 
-    public function __construct(private string $name) {
+    public function __construct(private string $name)
+    {
         $this->id = Uuid::uuid4();
         $this->createdDate = CarbonImmutable::now();
 

@@ -4,8 +4,8 @@ namespace Track\Presentation\Http\Rest\Controller;
 
 use Core\Domain\Bus\Command\CommandBusInterface;
 use Ramsey\Uuid\Uuid;
-use Track\Application\Command\PlayTrackBySourceTrackIdCommand;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Track\Application\Command\PlayTrackBySourceTrackIdCommand;
 
 class PlayTrackBySourceTrackIdController
 {
