@@ -5,7 +5,6 @@ namespace Track\Application\Query\Handler;
 use Core\Domain\Bus\Query\QueryHandlerInterface;
 use Core\Domain\Service\SpotifyHttpClientInterface;
 use Track\Application\Query\GetPlaylistQuery;
-use Track\Application\Query\GetTrackQuery;
 
 readonly class GetPlaylistQueryHandler implements QueryHandlerInterface
 {

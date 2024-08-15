@@ -4,8 +4,8 @@ namespace Track\Presentation\Http\Rest\Controller;
 
 use Core\Domain\Bus\Query\QueryBusInterface;
 use Ramsey\Uuid\Uuid;
-use Track\Application\Query\GetTrackQuery;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Track\Application\Query\GetTrackQuery;
 
 class GetTrackByIdController
 {

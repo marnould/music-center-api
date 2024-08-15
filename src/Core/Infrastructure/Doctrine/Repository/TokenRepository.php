@@ -14,6 +14,7 @@ class TokenRepository implements TokenRepositoryInterface
     public function __construct(private EntityManagerInterface $em)
     {
     }
+
     public function findOneOrNullBySource(Source $tokenSource): ?Token
     {
         return $this->em->createQueryBuilder()
@@ -27,8 +28,7 @@ class TokenRepository implements TokenRepositoryInterface
 
     public function save(Token $token): void
     {
-            $this->em->persist($token);
-            $this->em->flush();
+        $this->em->persist($token);
+        $this->em->flush();
     }
-
 }
