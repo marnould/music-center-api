@@ -38,6 +38,9 @@ services:
         Core\Domain\Bus\Query\QueryHandlerInterface:
             tags:
                 - { name: messenger.message_handler, bus: query.bus }
+        Core\Domain\Bus\Command\CommandHandlerInterface:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
 
 
     # Controllers are imported separately to make sure services can be injected
