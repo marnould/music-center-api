@@ -3,6 +3,7 @@
 namespace Track\Domain\Entity;
 
 use Carbon\CarbonImmutable;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Track\Domain\ValueObject\Source;
 
@@ -18,6 +19,7 @@ class Track
         private Source $source,
         private string $sourceTrackId
     ) {
+        $this->id = Uuid::uuid4();
         $this->createdDate = CarbonImmutable::now();
     }
 

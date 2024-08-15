@@ -2,14 +2,20 @@
 
 # Executables: vendors
 PHP_CS_FIXER  = ./vendor/bin/php-cs-fixer
+PHPSTAN       = ./vendor/bin/phpstan
 
 # Executables: local only
 SYMFONY_BIN   = symfony
 DOCKER_COMP   = docker-compose
 
 ## —— Coding standards ✨ ——————————————————————————————————————————————————————
+all-analyses: fixphp stan
+
 fixphp: ## Fix files with php-cs-fixer
 	@PHP_CS_FIXER_IGNORE_ENV=1 $(PHP_CS_FIXER) fix --allow-risky=yes
+
+stan: ## Run PhpStan
+	@$(PHPSTAN) analyse src
 
 ## —— Symfony binary 💻 ————————————————————————————————————————————————————————
 sfstart: ## Stop the webserver

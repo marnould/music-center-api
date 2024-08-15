@@ -9,7 +9,6 @@ use Core\Domain\ValueObject\TokenRepositoryInterface;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -155,27 +154,6 @@ class SpotifyHttpClient implements SpotifyHttpClientInterface
             [
                 'headers' => [
                     'Authorization' => 'Bearer '.$this->getValidToken()->getAccessToken(),
-                ],
-            ]
-        );
-
-        return $response->getContent();
-    }
-
-    /**
-     * @throws TransportExceptionInterface
-     * @throws ServerExceptionInterface
-     * @throws RedirectionExceptionInterface
-     * @throws ClientExceptionInterface|DecodingExceptionInterface
-     */
-    public function getPlaylist(string $playlistId): string
-    {
-        $response = $this->client->request(
-            'GET',
-            self::SPOTIFY_BASE_URL.'/playlists/'.$playlistId,
-            [
-                'headers' => [
-                    'Authorization' => sprintf('Bearer %s', $this->getToken()),
                 ],
             ]
         );
