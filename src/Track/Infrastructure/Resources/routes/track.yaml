@@ -10,3 +10,11 @@ get_all_tracks:
   path: /track
   controller: Track\Presentation\Http\Rest\Controller\GetAllTracksController
   methods: [ 'GET' ]
+
+play_track:
+  path: /track/play/{trackId}
+  controller: Track\Presentation\Http\Rest\Controller\PlayTrackBySourceTrackIdController
+  methods: ['PUT']
+  requirements:
+    # TODO create a parameter in packages/parameters.yml
+    trackId: '[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}'

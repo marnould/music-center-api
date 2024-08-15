@@ -5,8 +5,10 @@ framework:
             query.bus:
                 middleware:
                     - dispatch_after_current_bus
-#                    - Shared\Infrastructure\Bus\Middleware\FailureCatchMiddleware
-#                    - validation
+            command.bus:
+                middleware:
+                    - dispatch_after_current_bus
+                    - doctrine_transaction
         # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
         # failure_transport: failed
 
